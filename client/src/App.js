@@ -5,6 +5,11 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Alert from './components/layout/Alert';
+
+//Redux
+import { Provider } from 'react-redux';
+import store from './store'
 
 
 import './App.css';
@@ -12,18 +17,21 @@ import './App.css';
 
 const App = () => {
   return (
-    <Router>
-      <Fragment>
-        <Navbar></Navbar>
-        <Route exact path='/' component={Landing} />
-        <section className="container">
-          <Switch>
-            <Route exact path='/Register' component={Register} />
-            <Route exact path='/Login' component={Login} />
-          </Switch>
-        </section>
-      </Fragment>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar></Navbar>
+          <Route exact path='/' component={Landing} />
+          <section className="container">
+            <Alert />
+            <Switch>
+              <Route exact path='/Register' component={Register} />
+              <Route exact path='/Login' component={Login} />
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    </Provider>
   );
 }
 
